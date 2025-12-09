@@ -39,8 +39,8 @@
 
         display: flex;
         flex-direction: column;
-        justify-content: center;   /* centers vertically */
-        align-items: stretch;      /* full width buttons */
+        justify-content: flex-start;  /* top-align content */
+        align-items: stretch;          /* full width buttons */
         gap: 18px;
 
         background: rgba(255, 255, 255, 0.18);
@@ -50,8 +50,16 @@
         border: 1px solid rgba(255,255,255,0.3);
       }
 
+      /* Logo at top */
+      #sidebar-logo {
+        display: block;
+        margin: 0 auto 24px; /* centers horizontally, adds spacing below */
+        max-width: 80%;
+        height: auto;
+      }
+
       .side-btn {
-        padding: 14px 20px;  /* equal padding all around */
+        padding: 14px 20px;
         background: rgba(255,255,255,0.35);
         border: 1px solid rgba(255,255,255,0.4);
         border-radius: 12px;
@@ -177,6 +185,8 @@
 
       <!-- SIDEBAR -->
       <div id="sidebar">
+        <img id="sidebar-logo" src="pioneer-logo.png" alt="Pioneer Logo">
+
         <div class="side-btn" data-target="1">1</div>
         <div class="side-btn" data-target="2">2</div>
         <div class="side-btn" data-target="3">3</div>
