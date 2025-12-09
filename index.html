@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>&lt;model-viewer&gt; template</title>
+    <meta charset="utf-8">
+    <meta name="description" content="&lt;model-viewer&gt; template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" href="./styles.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <!-- <model-viewer> HTML element -->
+    <model-viewer src="HondaPioneer1000-5_TrunkAnimations_v2.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="aces" poster="poster.jpeg" shadow-intensity="2" autoplay exposure="0.38" shadow-softness="0" environment-image="legacy" animation-name="Idle_Default" camera-orbit="-1023deg 70.69deg 4.983m" field-of-view="22.98deg">
+      <button class="Hotspot" slot="hotspot-5" data-surface="36 0 3966 3989 3965 0.385 0.471 0.144" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">REAR CARGO STORAGE</div>
+      </button><button class="Hotspot" slot="hotspot-6" data-surface="25 0 3187 3186 3188 0.510 0.159 0.330" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">QUICKFLIP SEATS - CONVERTIBLE TRUNK</div>
+      </button><button class="Hotspot" slot="hotspot-7" data-surface="19 0 5291 4915 5287 0.115 0.856 0.029" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">DUMP BED FUNCTIONS</div>
+      </button>
+      <div class="progress-bar hide" slot="progress-bar">
+          <div class="update-bar"></div>
+      </div>
+      <button slot="ar-button" id="ar-button">
+          View in your space
+      </button>
+      <div id="ar-prompt">
+          <img src="ar_hand_prompt.png">
+      </div>
+    </model-viewer>  
+    <script src="script.js"></script>
+    <!-- Loads <model-viewer> for browsers: -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+  </body>
+</html>
