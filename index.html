@@ -14,13 +14,46 @@
         padding: 0;
         width: 100%;
         height: 100%;
+        background: black;
       }
 
       model-viewer {
         width: 100%;
-        height: 90%;
-        background-color: #ffffff;
+        height: 100%;
+        background-color: #000;
       }
+
+      /* ----------------------------- */
+      /*       SPLASH SCREEN           */
+      /* ----------------------------- */
+      #splash-screen {
+        position: fixed;
+        z-index: 9999;
+        top: 0; left: 0;
+        width: 100%;
+        height: 100%;
+        background: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 1;
+        transition: opacity 0.5s ease;
+      }
+
+      #splash-screen img {
+        width: 260px;
+        max-width: 70%;
+        opacity: 1;
+      }
+
+      #splash-screen.hide {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      /* ----------------------------- */
+      /* ORIGINAL STYLES BELOW         */
+      /* ----------------------------- */
 
       .Hotspot {
         background: #fff;
@@ -165,6 +198,14 @@
   </head>
 
   <body>
+
+    <!-- ------------------------- -->
+    <!--       SPLASH SCREEN       -->
+    <!-- ------------------------- -->
+    <div id="splash-screen">
+      <img src="Honda Logo.png" alt="Honda Logo">
+    </div>
+
     <model-viewer
       src="HondaPioneer1000-5_TrunkAnimations_v2.glb"
       ar
@@ -180,21 +221,11 @@
       camera-orbit="-1047deg 69.98deg 5.311m"
       field-of-view="22.98deg">
 
-      <button class="Hotspot" slot="hotspot-8">
-        <div class="HotspotAnnotation">1</div>
-      </button>
-      <button class="Hotspot" slot="hotspot-9">
-        <div class="HotspotAnnotation">2</div>
-      </button>
-      <button class="Hotspot" slot="hotspot-10">
-        <div class="HotspotAnnotation">3</div>
-      </button>
-      <button class="Hotspot" slot="hotspot-11">
-        <div class="HotspotAnnotation">4</div>
-      </button>
-      <button class="Hotspot" slot="hotspot-12">
-        <div class="HotspotAnnotation">5</div>
-      </button>
+      <button class="Hotspot" slot="hotspot-8"><div class="HotspotAnnotation">1</div></button>
+      <button class="Hotspot" slot="hotspot-9"><div class="HotspotAnnotation">2</div></button>
+      <button class="Hotspot" slot="hotspot-10"><div class="HotspotAnnotation">3</div></button>
+      <button class="Hotspot" slot="hotspot-11"><div class="HotspotAnnotation">4</div></button>
+      <button class="Hotspot" slot="hotspot-12"><div class="HotspotAnnotation">5</div></button>
 
       <div class="progress-bar hide" slot="progress-bar">
         <div class="update-bar"></div>
@@ -208,6 +239,7 @@
     </model-viewer>
 
     <script>
+      // MODEL-VIEWER LOADING BAR
       const onProgress = (event) => {
         const progressBar = event.target.querySelector('.progress-bar');
         const updatingBar = event.target.querySelector('.update-bar');
@@ -220,9 +252,19 @@
           progressBar.classList.remove('hide');
         }
       };
+      document.querySelector('model-viewer').addEventListener('progress', onProgress);
 
-      document.querySelector('model-viewer')
-        .addEventListener('progress', onProgress);
+
+      // -----------------------------
+      // SPLASH SCREEN TIMER + FADE
+      // -----------------------------
+      window.addEventListener("load", () => {
+        const splash = document.getElementById("splash-screen");
+
+        setTimeout(() => {
+          splash.classList.add("hide");
+        }, 1500); // stays visible 1.5 sec before fade-out
+      });
     </script>
 
     <script type="module"
