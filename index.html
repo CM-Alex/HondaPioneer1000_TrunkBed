@@ -47,7 +47,6 @@
       #splash-screen img {
         width: 260px;
         max-width: 70%;
-        opacity: 1;
       }
 
       #splash-screen.hide {
@@ -56,7 +55,7 @@
       }
 
       /* ----------------------------- */
-      /*       SIDEBAR PANEL           */
+      /*          SIDEBAR              */
       /* ----------------------------- */
       #sidebar {
         position: absolute;
@@ -93,107 +92,59 @@
         user-select: none;
       }
 
-      .side-btn:hover {
-        background: rgba(255, 255, 255, 0.55);
-      }
-
-      .side-btn:active {
-        background: rgba(255, 255, 255, 0.7);
-        transform: scale(0.97);
-      }
+      .side-btn:hover { background: rgba(255, 255, 255, 0.55); }
+      .side-btn:active { background: rgba(255, 255, 255, 0.7); transform: scale(0.97); }
 
       /* ----------------------------- */
-      /* ORIGINAL STYLES BELOW         */
+      /*        HOTSPOTS               */
       /* ----------------------------- */
 
       .Hotspot {
         background: #fff;
         border-radius: 32px;
         border: 0;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-        box-sizing: border-box;
-        cursor: pointer;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.25);
         height: 24px;
-        padding: 8px;
-        position: relative;
-        transition: opacity 0.3s;
         width: 24px;
-      }
-
-      .Hotspot:not([data-visible]) {
-        background: transparent;
-        border: 4px solid #fff;
-        box-shadow: none;
-        height: 32px;
-        pointer-events: none;
-        width: 32px;
-      }
-
-      .Hotspot:focus {
-        border: 4px solid rgb(0, 128, 200);
-        height: 32px;
-        outline: none;
-        width: 32px;
-      }
-
-      .Hotspot > * {
+        padding: 8px;
+        transition: 0.3s ease;
         opacity: 1;
-        transform: translateY(-50%);
+      }
+
+      /* Hidden hotspots */
+      .Hotspot.hidden {
+        opacity: 0 !important;
+        pointer-events: none;
+      }
+
+      /* Pulse animation */
+      @keyframes pulse {
+        0% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(2.2); opacity: 0.75; }
+        100% { transform: scale(1); opacity: 1; }
+      }
+
+      .pulse {
+        animation: pulse 1.2s ease-out infinite;
       }
 
       .HotspotAnnotation {
         background: #fff;
         border-radius: 4px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-        color: rgba(0, 0, 0, 0.8);
-        display: block;
-        font-family: Futura, Helvetica Neue, sans-serif;
-        font-size: 18px;
-        font-weight: 700;
-        left: calc(100% + 1em);
-        max-width: 128px;
-        overflow-wrap: break-word;
         padding: 0.5em 1em;
         position: absolute;
+        left: calc(100% + 1em);
         top: 50%;
-        width: max-content;
+        transform: translateY(-50%);
+        font-weight: 700;
+        font-size: 18px;
+        color: #000;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.25);
       }
 
-      .Hotspot:not([data-visible]) > * {
-        opacity: 0;
-        pointer-events: none;
-        transform: translateY(calc(-50% + 4px));
-        transition: transform 0.3s, opacity 0.3s;
-      }
-
-      .progress-bar {
-        display: block;
-        width: 33%;
-        height: 10%;
-        max-height: 2%;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate3d(-50%, -50%, 0);
-        border-radius: 25px;
-        box-shadow: 0px 3px 10px 3px rgba(0, 0, 0, 0.5), 0px 0px 5px 1px rgba(0, 0, 0, 0.6);
-        border: 1px solid rgba(255, 255, 255, 0.9);
-        background-color: rgba(0, 0, 0, 0.5);
-      }
-
-      .progress-bar.hide {
-        visibility: hidden;
-        transition: visibility 0.3s;
-      }
-
-      .update-bar {
-        background-color: rgba(255, 255, 255, 0.9);
-        width: 0%;
-        height: 100%;
-        border-radius: 25px;
-        float: left;
-        transition: width 0.3s;
-      }
+      /* ----------------------------- */
+      /* MODEL-VIEWER AR + PROMPT      */
+      /* ----------------------------- */
 
       #ar-button {
         background-image: url(ar_icon.png);
@@ -207,43 +158,10 @@
         white-space: nowrap;
         bottom: 16px;
         padding: 0px 16px 0px 40px;
-        font-family: Roboto Regular, Helvetica Neue, sans-serif;
-        font-size: 14px;
         color:#4285f4;
         height: 36px;
-        line-height: 36px;
         border-radius: 18px;
         border: 1px solid #DADCE0;
-      }
-
-      #ar-button:active { background-color: #E8EAED; }
-      #ar-button:focus { outline: none; }
-      #ar-button:focus-visible { outline: 1px solid #4285f4; }
-
-      @keyframes circle {
-        from { transform: translateX(-50%) rotate(0deg) translateX(50px) rotate(0deg); }
-        to   { transform: translateX(-50%) rotate(360deg) translateX(50px) rotate(-360deg); }
-      }
-
-      @keyframes elongate {
-        from { transform: translateX(100px); }
-        to   { transform: translateX(-100px); }
-      }
-
-      model-viewer > #ar-prompt {
-        position: absolute;
-        left: 50%;
-        bottom: 60px;
-        animation: elongate 2s infinite ease-in-out alternate;
-        display: none;
-      }
-
-      model-viewer[ar-status="session-started"] > #ar-prompt {
-        display: block;
-      }
-
-      model-viewer > #ar-prompt > img {
-        animation: circle 4s linear infinite;
       }
     </style>
   </head>
@@ -257,9 +175,9 @@
 
     <!-- SIDEBAR -->
     <div id="sidebar">
-      <div class="side-btn">1</div>
-      <div class="side-btn">2</div>
-      <div class="side-btn">3</div>
+      <div class="side-btn" data-target="1">1</div>
+      <div class="side-btn" data-target="2">2</div>
+      <div class="side-btn" data-target="3">3</div>
     </div>
 
     <!-- MODEL VIEWER -->
@@ -278,11 +196,26 @@
       camera-orbit="-1047deg 69.98deg 5.311m"
       field-of-view="22.98deg">
 
-      <button class="Hotspot" slot="hotspot-8"><div class="HotspotAnnotation">1</div></button>
-      <button class="Hotspot" slot="hotspot-9"><div class="HotspotAnnotation">2</div></button>
-      <button class="Hotspot" slot="hotspot-10"><div class="HotspotAnnotation">3</div></button>
-      <button class="Hotspot" slot="hotspot-11"><div class="HotspotAnnotation">4</div></button>
-      <button class="Hotspot" slot="hotspot-12"><div class="HotspotAnnotation">5</div></button>
+      <!-- HOTSPOT 1 -->
+      <button class="Hotspot" id="hs1" slot="hotspot-8"
+        data-surface="25 0 4896 4894 4909 0.329 0.131 0.540"
+        data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">1</div>
+      </button>
+
+      <!-- HOTSPOT 2 -->
+      <button class="Hotspot" id="hs2" slot="hotspot-9"
+        data-surface="19 0 4600 4592 4594 0.724 0.109 0.166"
+        data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">2</div>
+      </button>
+
+      <!-- HOTSPOT 3 -->
+      <button class="Hotspot" id="hs3" slot="hotspot-10"
+        data-surface="36 0 3995 3990 3996 0.762 0.106 0.133"
+        data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">3</div>
+      </button>
 
       <div class="progress-bar hide" slot="progress-bar">
         <div class="update-bar"></div>
@@ -290,18 +223,14 @@
 
       <button slot="ar-button" id="ar-button">View in your space</button>
 
-      <div id="ar-prompt">
-        <img src="ar_hand_prompt.png">
-      </div>
     </model-viewer>
 
     <script>
-      // MODEL-VIEWER LOADING BAR
+      /* MODEL VIEWER PROGRESS BAR */
       const onProgress = (event) => {
         const progressBar = event.target.querySelector('.progress-bar');
         const updatingBar = event.target.querySelector('.update-bar');
         updatingBar.style.width = `${event.detail.totalProgress * 100}%`;
-
         if (event.detail.totalProgress === 1) {
           progressBar.classList.add('hide');
           event.target.removeEventListener('progress', onProgress);
@@ -311,18 +240,49 @@
       };
       document.querySelector('model-viewer').addEventListener('progress', onProgress);
 
-      // SPLASH SCREEN TIMER + FADE
+      /* SPLASH FADE OUT */
       window.addEventListener("load", () => {
-        const splash = document.getElementById("splash-screen");
-
         setTimeout(() => {
-          splash.classList.add("hide");
+          document.getElementById("splash-screen").classList.add("hide");
         }, 1500);
       });
+
+      /* ----------------------------- */
+      /* BUTTON → HOTSPOT LOGIC        */
+      /* ----------------------------- */
+
+      const hotspots = {
+        1: document.getElementById("hs1"),
+        2: document.getElementById("hs2"),
+        3: document.getElementById("hs3"),
+      };
+
+      function showHotspot(n) {
+        // Hide all hotspots
+        Object.values(hotspots).forEach(h => {
+          h.classList.add("hidden");
+          h.classList.remove("pulse");
+        });
+
+        // Show and pulse the target
+        const target = hotspots[n];
+        target.classList.remove("hidden");
+        target.classList.add("pulse");
+      }
+
+      document.querySelectorAll(".side-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          showHotspot(btn.dataset.target);
+        });
+      });
+
+      // Start with all hidden
+      showHotspot(null);
     </script>
 
     <script type="module"
       src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js">
     </script>
+
   </body>
 </html>
