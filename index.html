@@ -10,15 +10,68 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
-      :not(:defined) > * { display: none; }
-
       html, body {
         margin: 0;
         padding: 0;
         width: 100%;
         height: 100%;
-        background: black;
+        overflow: hidden;
         font-family: 'Inter', sans-serif;
+        background: black;
+      }
+
+      /* MAIN LAYOUT – FLEX SPLIT */
+      #layout {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      /* ----------------------------- */
+      /*          SIDEBAR              */
+      /* ----------------------------- */
+      #sidebar {
+        width: 20%;
+        height: 100%;
+        padding: 16px;
+        box-sizing: border-box;
+
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        overflow-y: auto;
+
+        backdrop-filter: blur(12px) saturate(180%);
+        -webkit-backdrop-filter: blur(12px) saturate(180%);
+        background: rgba(255, 255, 255, 0.18);
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .side-btn {
+        width: 100%;
+        padding: 10px 16px;
+        background: rgba(255, 255, 255, 0.35);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        border-radius: 10px;
+        font-size: 18px;
+        color: #fff;
+        cursor: pointer;
+        transition: 0.25s ease;
+        text-align: center;
+      }
+
+      .side-btn:hover { background: rgba(255, 255, 255, 0.55); }
+      .side-btn:active { background: rgba(255, 255, 255, 0.7); transform: scale(0.97); }
+
+      /* ----------------------------- */
+      /*        MODEL VIEWER           */
+      /* ----------------------------- */
+      #viewer-container {
+        width: 80%;
+        height: 100%;
+        position: relative;
       }
 
       model-viewer {
@@ -28,7 +81,7 @@
       }
 
       /* ----------------------------- */
-      /*       SPLASH SCREEN           */
+      /*          SPLASH               */
       /* ----------------------------- */
       #splash-screen {
         position: fixed;
@@ -40,13 +93,8 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        opacity: 1;
         transition: opacity 0.5s ease;
-      }
-
-      #splash-screen img {
-        width: 260px;
-        max-width: 70%;
+        opacity: 1;
       }
 
       #splash-screen.hide {
@@ -54,51 +102,14 @@
         pointer-events: none;
       }
 
-      /* ----------------------------- */
-      /*          SIDEBAR              */
-      /* ----------------------------- */
-      #sidebar {
-        position: absolute;
-        top: 2%;
-        left: 1%;
-        width: 20%;
-        height: 96%;
-        padding: 20px;
-
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-
-        backdrop-filter: blur(12px) saturate(180%);
-        -webkit-backdrop-filter: blur(12px) saturate(180%);
-        background: rgba(255, 255, 255, 0.18);
-        border-radius: 18px;
-        border: 1px solid rgba(255, 255, 255, 0.3);
-
-        z-index: 2000;
+      #splash-screen img {
+        width: 260px;
+        max-width: 70%;
       }
-
-      .side-btn {
-        width: 100%;
-        padding: 14px 20px;
-        background: rgba(255, 255, 255, 0.35);
-        border: 1px solid rgba(255, 255, 255, 0.4);
-        border-radius: 12px;
-        font-size: 18px;
-        color: #fff;
-        text-align: center;
-        cursor: pointer;
-        transition: 0.25s ease;
-        user-select: none;
-      }
-
-      .side-btn:hover { background: rgba(255, 255, 255, 0.55); }
-      .side-btn:active { background: rgba(255, 255, 255, 0.7); transform: scale(0.97); }
 
       /* ----------------------------- */
       /*        HOTSPOTS               */
       /* ----------------------------- */
-
       .Hotspot {
         background: #fff;
         border-radius: 32px;
@@ -111,16 +122,20 @@
         opacity: 1;
       }
 
-      /* Hidden hotspots */
       .Hotspot.hidden {
-        opacity: 0 !important;
+        opacity: 0;
         pointer-events: none;
+      }
+
+      /* Raise hotspots 2 and 3 to match height of hotspot 1 */
+      #hs2, #hs3 {
+        transform: translateY(-18px);
       }
 
       /* Pulse animation */
       @keyframes pulse {
         0% { transform: scale(1); opacity: 1; }
-        50% { transform: scale(2.2); opacity: 0.75; }
+        50% { transform: scale(2); opacity: 0.75; }
         100% { transform: scale(1); opacity: 1; }
       }
 
@@ -131,37 +146,14 @@
       .HotspotAnnotation {
         background: #fff;
         border-radius: 4px;
-        padding: 0.5em 1em;
+        padding: 0.3em 0.8em;
         position: absolute;
         left: calc(100% + 1em);
         top: 50%;
         transform: translateY(-50%);
         font-weight: 700;
-        font-size: 18px;
+        font-size: 16px;
         color: #000;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.25);
-      }
-
-      /* ----------------------------- */
-      /* MODEL-VIEWER AR + PROMPT      */
-      /* ----------------------------- */
-
-      #ar-button {
-        background-image: url(ar_icon.png);
-        background-repeat: no-repeat;
-        background-size: 20px 20px;
-        background-position: 12px 50%;
-        background-color: #fff;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        white-space: nowrap;
-        bottom: 16px;
-        padding: 0px 16px 0px 40px;
-        color:#4285f4;
-        height: 36px;
-        border-radius: 18px;
-        border: 1px solid #DADCE0;
       }
     </style>
   </head>
@@ -173,84 +165,67 @@
       <img src="Honda Logo.png" alt="Honda Logo">
     </div>
 
-    <!-- SIDEBAR -->
-    <div id="sidebar">
-      <div class="side-btn" data-target="1">1</div>
-      <div class="side-btn" data-target="2">2</div>
-      <div class="side-btn" data-target="3">3</div>
-    </div>
+    <div id="layout">
 
-    <!-- MODEL VIEWER -->
-    <model-viewer
-      src="HondaPioneer1000-5_TrunkAnimations_v2.glb"
-      ar
-      ar-modes="webxr scene-viewer quick-look"
-      camera-controls
-      tone-mapping="neutral"
-      poster="poster.jpeg"
-      shadow-intensity="1.07"
-      autoplay
-      exposure="0.47"
-      shadow-softness="1"
-      animation-name="Idle_Default"
-      camera-orbit="-1047deg 69.98deg 5.311m"
-      field-of-view="22.98deg">
-
-      <!-- HOTSPOT 1 -->
-      <button class="Hotspot" id="hs1" slot="hotspot-8"
-        data-surface="25 0 4896 4894 4909 0.329 0.131 0.540"
-        data-visibility-attribute="visible">
-        <div class="HotspotAnnotation">1</div>
-      </button>
-
-      <!-- HOTSPOT 2 -->
-      <button class="Hotspot" id="hs2" slot="hotspot-9"
-        data-surface="19 0 4600 4592 4594 0.724 0.109 0.166"
-        data-visibility-attribute="visible">
-        <div class="HotspotAnnotation">2</div>
-      </button>
-
-      <!-- HOTSPOT 3 -->
-      <button class="Hotspot" id="hs3" slot="hotspot-10"
-        data-surface="36 0 3995 3990 3996 0.762 0.106 0.133"
-        data-visibility-attribute="visible">
-        <div class="HotspotAnnotation">3</div>
-      </button>
-
-      <div class="progress-bar hide" slot="progress-bar">
-        <div class="update-bar"></div>
+      <!-- SIDEBAR -->
+      <div id="sidebar">
+        <div class="side-btn" data-target="1">1</div>
+        <div class="side-btn" data-target="2">2</div>
+        <div class="side-btn" data-target="3">3</div>
       </div>
 
-      <button slot="ar-button" id="ar-button">View in your space</button>
+      <!-- VIEWER SECTION -->
+      <div id="viewer-container">
+        <model-viewer
+          src="HondaPioneer1000-5_TrunkAnimations_v2.glb"
+          ar
+          ar-modes="webxr scene-viewer quick-look"
+          camera-controls
+          tone-mapping="neutral"
+          poster="poster.jpeg"
+          shadow-intensity="1.07"
+          autoplay
+          exposure="0.47"
+          shadow-softness="1"
+          animation-name="Idle_Default"
+          camera-orbit="-1047deg 69.98deg 5.311m"
+          field-of-view="22.98deg">
 
-    </model-viewer>
+          <!-- HOTSPOT 1 -->
+          <button class="Hotspot" id="hs1" slot="hotspot-8"
+            data-surface="25 0 4896 4894 4909 0.329 0.131 0.540"
+            data-visibility-attribute="visible">
+            <div class="HotspotAnnotation">1</div>
+          </button>
+
+          <!-- HOTSPOT 2 -->
+          <button class="Hotspot" id="hs2" slot="hotspot-9"
+            data-surface="19 0 4600 4592 4594 0.724 0.109 0.166"
+            data-visibility-attribute="visible">
+            <div class="HotspotAnnotation">2</div>
+          </button>
+
+          <!-- HOTSPOT 3 -->
+          <button class="Hotspot" id="hs3" slot="hotspot-10"
+            data-surface="36 0 3995 3990 3996 0.762 0.106 0.133"
+            data-visibility-attribute="visible">
+            <div class="HotspotAnnotation">3</div>
+          </button>
+
+        </model-viewer>
+      </div>
+
+    </div>
 
     <script>
-      /* MODEL VIEWER PROGRESS BAR */
-      const onProgress = (event) => {
-        const progressBar = event.target.querySelector('.progress-bar');
-        const updatingBar = event.target.querySelector('.update-bar');
-        updatingBar.style.width = `${event.detail.totalProgress * 100}%`;
-        if (event.detail.totalProgress === 1) {
-          progressBar.classList.add('hide');
-          event.target.removeEventListener('progress', onProgress);
-        } else {
-          progressBar.classList.remove('hide');
-        }
-      };
-      document.querySelector('model-viewer').addEventListener('progress', onProgress);
-
-      /* SPLASH FADE OUT */
+      /* SPLASH FADE */
       window.addEventListener("load", () => {
         setTimeout(() => {
           document.getElementById("splash-screen").classList.add("hide");
         }, 1500);
       });
 
-      /* ----------------------------- */
-      /* BUTTON → HOTSPOT LOGIC        */
-      /* ----------------------------- */
-
+      /* SIDEBAR BUTTONS → HOTSPOT LOGIC */
       const hotspots = {
         1: document.getElementById("hs1"),
         2: document.getElementById("hs2"),
@@ -258,16 +233,13 @@
       };
 
       function showHotspot(n) {
-        // Hide all hotspots
         Object.values(hotspots).forEach(h => {
           h.classList.add("hidden");
           h.classList.remove("pulse");
         });
 
-        // Show and pulse the target
-        const target = hotspots[n];
-        target.classList.remove("hidden");
-        target.classList.add("pulse");
+        hotspots[n].classList.remove("hidden");
+        hotspots[n].classList.add("pulse");
       }
 
       document.querySelectorAll(".side-btn").forEach(btn => {
@@ -276,13 +248,9 @@
         });
       });
 
-      // Start with all hidden
-      showHotspot(null);
+      showHotspot(1);
     </script>
 
-    <script type="module"
-      src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js">
-    </script>
-
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
   </body>
 </html>
