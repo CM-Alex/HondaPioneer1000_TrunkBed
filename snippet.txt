@@ -1,10 +1,10 @@
-<model-viewer src="HondaPioneer1000-5_TrunkAnimations_v2.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="poster.jpeg" shadow-intensity="1.07" autoplay exposure="0.47" shadow-softness="1" animation-name="Idle_Default" camera-orbit="-1025deg 66.38deg 4.983m" field-of-view="22.98deg">
-    <button class="Hotspot" slot="hotspot-5" data-surface="36 0 3966 3989 3965 0.385 0.471 0.144" data-visibility-attribute="visible">
-        <div class="HotspotAnnotation">REAR CARGO STORAGE</div>
-    </button><button class="Hotspot" slot="hotspot-6" data-surface="25 0 3187 3186 3188 0.510 0.159 0.330" data-visibility-attribute="visible">
-        <div class="HotspotAnnotation">QUICKFLIP SEATS - CONVERTIBLE TRUNK</div>
-    </button><button class="Hotspot" slot="hotspot-7" data-surface="19 0 5291 4915 5287 0.115 0.856 0.029" data-visibility-attribute="visible">
-        <div class="HotspotAnnotation">DUMP BED FUNCTIONS</div>
+<model-viewer src="HondaPioneer1000-5_TrunkAnimations_v2.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="poster.jpeg" shadow-intensity="1.07" autoplay exposure="0.47" shadow-softness="1" animation-name="Idle_Default" camera-orbit="-1047deg 69.98deg 5.311m" field-of-view="22.98deg">
+    <button class="Hotspot" slot="hotspot-8" data-surface="25 0 4896 4894 4909 0.329 0.131 0.540" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">1</div>
+    </button><button class="Hotspot" slot="hotspot-9" data-surface="19 0 4600 4592 4594 0.724 0.109 0.166" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">2</div>
+    </button><button class="Hotspot" slot="hotspot-10" data-surface="36 0 3995 3990 3996 0.762 0.106 0.133" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">3</div>
     </button>
     <div class="progress-bar hide" slot="progress-bar">
         <div class="update-bar"></div>
