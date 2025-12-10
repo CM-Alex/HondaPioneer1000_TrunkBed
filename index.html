@@ -183,18 +183,15 @@ window.addEventListener("load", () => {
   setTimeout(() => {
     document.getElementById("splash-screen").classList.add("hide");
 
+    // Play DriveIn for 1 second
     viewer.setAttribute("animation-name", "DriveIn");
     viewer.play();
 
-    const driveInterval = setInterval(() => {
-      if (viewer.currentTime >= viewer.duration) {
-        clearInterval(driveInterval);
-        viewer.pause();
-        viewer.setAttribute("animation-name", "Idle_Default");
-        viewer.play();
-      }
-    }, 50);
-  }, 1000);
+    setTimeout(() => {
+      viewer.setAttribute("animation-name", "Idle_Default");
+      viewer.play();
+    }, 1000); // 1 second DriveIn
+  }, 1000); // splash screen
 });
 
 // BUTTONS
@@ -230,13 +227,10 @@ function playAnimationSequence(first, second) {
 
   if (!second) return;
 
-  const interval = setInterval(() => {
-    if (viewer.currentTime >= viewer.duration) {
-      clearInterval(interval);
-      viewer.setAttribute("animation-name", second);
-      viewer.play();
-    }
-  }, 50);
+  setTimeout(() => {
+    viewer.setAttribute("animation-name", second);
+    viewer.play();
+  }, 1000); // fallback duration (adjust if needed)
 }
 
 buttons.forEach(btn => {
