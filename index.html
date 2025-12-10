@@ -126,46 +126,9 @@
       max-width: 70%;
     }
 
-    /* HOTSPOTS */
+    /* HOTSPOTS HIDDEN */
     .Hotspot {
-      border-radius: 50%;
-      border: 2px solid rgba(255, 255, 255, 0.6);
-      background: rgba(255, 255, 255, 0.1);
-      width: 24px;
-      height: 24px;
-      position: relative;
-      padding: 0;
-      cursor: pointer;
-      transition: transform 0.25s, opacity 0.25s;
-    }
-
-    .Hotspot::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.2);
-      transform: translate(-50%, -50%) scale(1);
-      opacity: 0.8;
-      animation: ripple 1.5s infinite ease-out;
-    }
-
-    @keyframes ripple {
-      0% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
-      50% { transform: translate(-50%, -50%) scale(9); opacity: 0; }
-      100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
-    }
-
-    .Hotspot.hidden {
-      opacity: 0 !important;
-      pointer-events: none;
-    }
-
-    #hs2, #hs3 {
-      transform: translateY(-32px);
+      display: none !important;
     }
 
     /* FEATURE TEXT */
@@ -174,7 +137,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: calc(100% - 48px); /* padding left/right */
+      width: calc(100% - 48px);
       padding: 0 24px;
       opacity: 0;
       transition: transform 0.8s ease, opacity 0.8s ease;
@@ -269,8 +232,6 @@
   <div id="viewer-container">
     <model-viewer
       src="HondaPioneer1000-5_TrunkAnimations_v2.glb"
-      ar
-      ar-modes="webxr scene-viewer quick-look"
       camera-controls
       interaction-prompt="auto"
       camera-orbit="-1047deg 69.98deg 5.311m"
@@ -286,10 +247,6 @@
       shadow-softness="1"
       animation-name="Idle_Default"
       field-of-view="22.98deg">
-
-      <button class="Hotspot hidden" id="hs1" slot="hotspot-8" data-animation="Storage_Trunk"></button>
-      <button class="Hotspot hidden" id="hs2" slot="hotspot-9" data-animation="TrunkSeats_Up"></button>
-      <button class="Hotspot hidden" id="hs3" slot="hotspot-10" data-animation="Lift_TrunkBed"></button>
     </model-viewer>
   </div>
 
@@ -303,12 +260,6 @@ window.addEventListener("load", () => {
 });
 
 const viewer = document.querySelector("model-viewer");
-const hotspots = {
-  1: document.getElementById("hs1"),
-  2: document.getElementById("hs2"),
-  3: document.getElementById("hs3"),
-};
-
 const buttons = document.querySelectorAll(".side-btn");
 const backBtn = document.getElementById("back-btn");
 
@@ -329,39 +280,36 @@ function showBackButton() {
   backBtn.style.pointerEvents = "auto";
 }
 
-function playAnimationWithHotspot(target) {
-  Object.values(hotspots).forEach(h => h.classList.add("hidden"));
-  const hs = hotspots[target];
-  hs.classList.remove("hidden");
-
-  const animName = hs.dataset.animation;
-
-  // Play animation (rotation always enabled)
-  viewer.setAttribute("animation-name", animName);
-  viewer.play();
-
-  hideButtonsSequentially();
-
+function showFeatureText(target) {
   document.querySelectorAll('.feature-text').forEach(f => f.classList.remove('visible'));
   setTimeout(() => {
     const ftext = document.getElementById(`feature${target}`);
     ftext.classList.add('visible');
   }, 500);
+}
 
-  setTimeout(showBackButton, 600);
+function playAnimation(animName) {
+  viewer.setAttribute("animation-name", animName);
+  viewer.play();
 }
 
 buttons.forEach(btn => {
   btn.addEventListener("click", () => {
-    playAnimationWithHotspot(btn.dataset.target);
+    hideButtonsSequentially();
+    showFeatureText(btn.dataset.target);
+
+    // Play corresponding animation
+    if (btn.dataset.target === "1") playAnimation("Storage_Trunk");
+    if (btn.dataset.target === "2") playAnimation("TrunkSeats_Up");
+    if (btn.dataset.target === "3") playAnimation("Lift_TrunkBed");
+
+    setTimeout(showBackButton, 600);
   });
 });
 
 backBtn.addEventListener("click", () => {
   location.reload();
 });
-
-Object.values(hotspots).forEach(h => h.classList.add("hidden"));
 </script>
 
 <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
