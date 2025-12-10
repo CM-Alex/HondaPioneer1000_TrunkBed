@@ -210,9 +210,9 @@
     <div id="feature2" class="feature-text">
       <h2>QuickFlip® Convertible Trunk Seats</h2>
       <ul>
-        <li>Seats pop up from cargo bed when needed <a class="source" href="https://powersports.honda.com/sxs/recutility/pioneer-1000-5/features" target="_blank">source</a></li>
-        <li>Fold flat for full cargo-bed capacity <a class="source" href="https://powersports.honda.com/sxs/recutility/pioneer-1000-5/pioneer-1000-5-trail-special-edition" target="_blank">source</a></li>
-        <li>Do not raise cargo bed with QuickFlip seats deployed <a class="source" href="https://cdn.powersports.honda.com/documentum/MWOM/ml.remawmom.2021_31hl4a60_pioneer_1000.pdf" target="_blank">manual</a></li>
+        <li>Open side doors and actuate seat latch <a class="source" href="https://powersports.honda.com/sxs/recutility/pioneer-1000-5/features" target="_blank">source</a></li>
+        <li>Fold seat up and click in place, unfold cushion <a class="source" href="https://powersports.honda.com/sxs/recutility/pioneer-1000-5/pioneer-1000-5-trail-special-edition" target="_blank">source</a></li>
+        <li>Maximum passenger weight: 150 lbs <a class="source" href="https://cdn.powersports.honda.com/documentum/MWOM/ml.remawmom.2021_31hl4a60_pioneer_1000.pdf" target="_blank">manual</a></li>
       </ul>
     </div>
 
@@ -236,9 +236,6 @@
       interaction-prompt="auto"
       min-camera-orbit="-1047deg 69.98deg 4.25m"
       max-camera-orbit="-1047deg 69.98deg 6.37m"
-      min-field-of-view="22deg"
-      max-field-of-view="24.5deg"
-      touch-action="pan-y"
       style="cursor: grab;"
       poster="poster.jpeg"
       shadow-intensity="1.07"
@@ -264,9 +261,11 @@ window.addEventListener("load", () => {
     // Play DriveIn once then Idle_Default
     viewer.setAttribute("animation-name", "DriveIn");
     viewer.play();
+
     const driveInterval = setInterval(() => {
       if (viewer.currentTime >= viewer.duration) {
         clearInterval(driveInterval);
+        viewer.pause();
         viewer.setAttribute("animation-name", "Idle_Default");
         viewer.play();
       }
