@@ -255,7 +255,9 @@
 window.addEventListener("load", () => {
   setTimeout(() => {
     document.getElementById("splash-screen").classList.add("hide");
-  }, 1500);
+    viewer.setAttribute("animation-name", "DriveIn");
+    viewer.play();
+  }, 1000);
 });
 
 const viewer = document.querySelector("model-viewer");
@@ -287,9 +289,16 @@ function showFeatureText(target) {
   }, 500);
 }
 
-function playAnimation(animName) {
-  viewer.setAttribute("animation-name", animName);
+function playAnimationSequence(first, second) {
+  viewer.setAttribute("animation-name", first);
   viewer.play();
+  viewer.addEventListener("finished", function handler() {
+    viewer.removeEventListener("finished", handler);
+    if (second) {
+      viewer.setAttribute("animation-name", second);
+      viewer.play();
+    }
+  });
 }
 
 buttons.forEach(btn => {
@@ -297,16 +306,24 @@ buttons.forEach(btn => {
     hideButtonsSequentially();
     showFeatureText(btn.dataset.target);
 
-    if (btn.dataset.target === "1") playAnimation("Storage_Trunk");
-    if (btn.dataset.target === "2") playAnimation("TrunkSeats_Up");
-    if (btn.dataset.target === "3") playAnimation("Lift_TrunkBed");
+    if (btn.dataset.target === "1") playAnimationSequence("Storage_Trunk", "EmptyTrunk");
+    if (btn.dataset.target === "2") playAnimationSequence("TrunkSeats_Up", "TrunkSeats_Up");
+    if (btn.dataset.target === "3") playAnimationSequence("Lift_TrunkBed", "Lift_Trunk_Idle");
 
     setTimeout(showBackButton, 600);
   });
 });
 
 backBtn.addEventListener("click", () => {
-  location.reload();
+  document.querySelectorAll(".side-btn").forEach(btn => {
+    btn.style.opacity = 1;
+    btn.style.pointerEvents = "auto";
+  });
+  document.querySelectorAll(".feature-text").forEach(f => f.classList.remove('visible'));
+  backBtn.style.opacity = 0;
+  backBtn.style.pointerEvents = "none";
+  viewer.setAttribute("animation-name", "Idle_Default");
+  viewer.play();
 });
 </script>
 
