@@ -285,7 +285,6 @@
       exposure="0.47"
       shadow-softness="1"
       animation-name="Idle_Default"
-      loop="false"
       field-of-view="22.98deg">
 
       <button class="Hotspot hidden" id="hs1" slot="hotspot-8" data-animation="Storage_Trunk"></button>
@@ -337,7 +336,7 @@ function playAnimationWithHotspot(target) {
 
   const animName = hs.dataset.animation;
 
-  viewer.pause();
+  // Play animation (rotation always enabled)
   viewer.setAttribute("animation-name", animName);
   viewer.play();
 
