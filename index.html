@@ -54,7 +54,7 @@
     #sidebar-buttons {
       display: flex;
       flex-direction: column;
-      gap: 16px; /* equal spacing */
+      gap: 16px;
       margin-bottom: 24px;
     }
 
@@ -174,7 +174,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: calc(100% - 48px); /* equal horizontal padding */
+      width: calc(100% - 48px); /* padding left/right */
       padding: 0 24px;
       opacity: 0;
       transition: transform 0.8s ease, opacity 0.8s ease;
@@ -272,7 +272,7 @@
       ar
       ar-modes="webxr scene-viewer quick-look"
       camera-controls
-      interaction-prompt="none"
+      interaction-prompt="auto"
       camera-orbit="-1047deg 69.98deg 5.311m"
       min-camera-orbit="-1047deg 69.98deg 4.25m"
       max-camera-orbit="-1047deg 69.98deg 6.37m"
