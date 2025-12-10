@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <title><model-viewer> merged template</title>
+  <title>Pioneer 1000 Interactive</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -178,7 +178,7 @@
       transform: translateX(-40px);
       transition: transform 0.8s ease, opacity 0.8s ease;
       color: #fff;
-      font-size: 16.8px;
+      font-size: 16.8px; /* 20% bigger */
       line-height: 1.5;
       text-align: center;
       pointer-events: auto;
@@ -236,27 +236,27 @@
       <div id="feature1" class="feature-text">
         <h2>REAR CARGO STORAGE</h2>
         <ul>
-          <li>1000-lb cargo bed capacity <a class="source" href="https://powersports.honda.com/sxs/recutility/pioneer-1000-5/pioneer-1000-5?utm_source=chatgpt.com" target="_blank">source</a></li>
-          <li>Tilt bed for easier dumping <a class="source" href="https://powersports.honda.com/sxs/recutility/pioneer-1000-5/2024/pioneer-1000-5?utm_source=chatgpt.com" target="_blank">source</a></li>
-          <li>2,500-lb towing capacity <a class="source" href="https://powersports.honda.com/sxs/recutility/pioneer-1000-5/2024/features?utm_source=chatgpt.com" target="_blank">source</a></li>
+          <li>1000-lb cargo bed capacity <a class="source" href="https://powersports.honda.com/sxs/recutility/pioneer-1000-5/pioneer-1000-5" target="_blank">source</a></li>
+          <li>Tilt bed for easier dumping <a class="source" href="https://powersports.honda.com/sxs/recutility/pioneer-1000-5/2024/pioneer-1000-5" target="_blank">source</a></li>
+          <li>2,500-lb towing capacity <a class="source" href="https://powersports.honda.com/sxs/recutility/pioneer-1000-5/2024/features" target="_blank">source</a></li>
         </ul>
       </div>
 
       <div id="feature2" class="feature-text">
         <h2>CONVERTIBLE TRUNK SEATS</h2>
         <ul>
-          <li>QuickFlip® rear seats pop up for 5-passenger seating <a class="source" href="https://powersports.honda.com/sxs/recutility/pioneer-1000-5/2024/pioneer-1000-5?utm_source=chatgpt.com" target="_blank">source</a></li>
-          <li>Seats fold flat for cargo mode <a class="source" href="https://powersports.honda.com/sxs/recutility/-/media/products/family/pioneer-1000-5/brochures/2024/2024-pioneer-1000-5-brochure.pdf?utm_source=chatgpt.com" target="_blank">source</a></li>
-          <li>Switch between passenger/cargo flexibly <a class="source" href="https://powersports.honda.com/sxs/recutility/-/media/products/family/pioneer-1000-5/brochures/2024/2024-pioneer-1000-5-brochure.pdf?utm_source=chatgpt.com" target="_blank">source</a></li>
+          <li>QuickFlip® rear seats for 5-passenger mode <a class="source" href="https://powersports.honda.com/sxs/recutility/pioneer-1000-5/2024/pioneer-1000-5" target="_blank">source</a></li>
+          <li>Seats fold flat for cargo mode <a class="source" href="https://powersports.honda.com/sxs/recutility/-/media/products/family/pioneer-1000-5/brochures/2024/2024-pioneer-1000-5-brochure.pdf" target="_blank">source</a></li>
+          <li>Switch between passenger/cargo flexibly <a class="source" href="https://powersports.honda.com/sxs/recutility/-/media/products/family/pioneer-1000-5/brochures/2024/2024-pioneer-1000-5-brochure.pdf" target="_blank">source</a></li>
         </ul>
       </div>
 
       <div id="feature3" class="feature-text">
         <h2>DUMP BED FUNCTION</h2>
         <ul>
-          <li>Tilt bed dumps cargo easily <a class="source" href="https://powersports.honda.com/sxs/recutility/pioneer-1000-5/pioneer-1000-5?utm_source=chatgpt.com" target="_blank">source</a></li>
-          <li>QuickFlip seats fold flat, keeping dump bed usable <a class="source" href="https://powersports.honda.com/sxs/recutility/-/media/products/family/pioneer-1000-5/brochures/2024/2024-pioneer-1000-5-brochure.pdf?utm_source=chatgpt.com" target="_blank">source</a></li>
-          <li>Switch between 5-passenger mode and cargo/dump-bed mode <a class="source" href="https://powersports.honda.com/sxs/recutility/-/media/products/family/pioneer-1000-5/brochures/2024/2024-pioneer-1000-5-brochure.pdf?utm_source=chatgpt.com" target="_blank">source</a></li>
+          <li>Tilt bed dumps cargo easily <a class="source" href="https://powersports.honda.com/sxs/recutility/pioneer-1000-5/pioneer-1000-5" target="_blank">source</a></li>
+          <li>QuickFlip seats fold flat for dump-bed use <a class="source" href="https://powersports.honda.com/sxs/recutility/-/media/products/family/pioneer-1000-5/brochures/2024/2024-pioneer-1000-5-brochure.pdf" target="_blank">source</a></li>
+          <li>Switch between 5-passenger and cargo/dump-bed mode <a class="source" href="https://powersports.honda.com/sxs/recutility/-/media/products/family/pioneer-1000-5/brochures/2024/2024-pioneer-1000-5-brochure.pdf" target="_blank">source</a></li>
         </ul>
       </div>
     </div>
@@ -271,7 +271,7 @@
       ar
       ar-modes="webxr scene-viewer quick-look"
       camera-controls
-      interaction-prompt="auto"
+      interaction-prompt="none"
       camera-orbit="-1047deg 69.98deg 5.311m"
       min-camera-orbit="-1047deg 69.98deg 4.25m"
       max-camera-orbit="-1047deg 69.98deg 6.37m"
@@ -284,6 +284,7 @@
       exposure="0.47"
       shadow-softness="1"
       animation-name="Idle_Default"
+      loop="false"
       field-of-view="22.98deg">
 
       <button class="Hotspot hidden" id="hs1" slot="hotspot-8" data-animation="Storage_Trunk"></button>
@@ -334,6 +335,9 @@ function playAnimationWithHotspot(target) {
   hs.classList.remove("hidden");
 
   const animName = hs.dataset.animation;
+
+  // Stop any current animation
+  viewer.pause();
   viewer.setAttribute("animation-name", animName);
   viewer.play();
 
