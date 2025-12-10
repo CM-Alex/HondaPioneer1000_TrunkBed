@@ -18,11 +18,7 @@
       font-family: 'Inter', sans-serif;
     }
 
-    #layout {
-      display: flex;
-      width: 100%;
-      height: 100%;
-    }
+    #layout { display: flex; width: 100%; height: 100%; }
 
     /* SIDEBAR */
     #sidebar {
@@ -43,12 +39,7 @@
       overflow: hidden;
     }
 
-    #sidebar-logo {
-      display: block;
-      margin: 0 auto 24px;
-      max-width: 80%;
-      height: auto;
-    }
+    #sidebar-logo { display: block; margin: 0 auto 24px; max-width: 80%; height: auto; }
 
     /* BUTTONS */
     #sidebar-buttons {
@@ -71,127 +62,52 @@
       transition: 0.5s ease, opacity 0.5s ease;
     }
 
-    .side-btn:hover, #back-btn:hover {
-      background: rgba(255,255,255,0.55);
-    }
+    .side-btn:hover, #back-btn:hover { background: rgba(255,255,255,0.55); }
+    .side-btn:active, #back-btn:active { background: rgba(255,255,255,0.7); transform: scale(0.97); }
 
-    .side-btn:active, #back-btn:active {
-      background: rgba(255,255,255,0.7);
-      transform: scale(0.97);
-    }
-
-    #back-btn {
-      position: absolute;
-      bottom: 24px;
-      left: 24px;
-      right: 24px;
-      opacity: 0;
-      pointer-events: none;
-    }
+    #back-btn { position: absolute; bottom: 24px; left: 24px; right: 24px; opacity: 0; pointer-events: none; }
 
     /* MODEL VIEWER */
-    #viewer-container {
-      width: 80%;
-      height: 100%;
-    }
-
-    model-viewer {
-      width: 100%;
-      height: 100%;
-      background: #000;
-    }
+    #viewer-container { width: 80%; height: 100%; }
+    model-viewer { width: 100%; height: 100%; background: #000; }
 
     /* SPLASH SCREEN */
     #splash-screen {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      background: black;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      opacity: 1;
-      transition: opacity 0.5s ease;
-      z-index: 9999;
+      position: fixed; top:0; left:0; width:100%; height:100%;
+      background:black; display:flex; justify-content:center; align-items:center;
+      opacity:1; transition: opacity 0.5s ease; z-index:9999;
     }
-
-    #splash-screen.hide {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    #splash-screen img {
-      width: 260px;
-      max-width: 70%;
-    }
+    #splash-screen.hide { opacity:0; pointer-events:none; }
+    #splash-screen img { width:260px; max-width:70%; }
 
     /* HOTSPOTS HIDDEN */
-    .Hotspot {
-      display: none !important;
-    }
+    .Hotspot { display:none !important; }
 
     /* FEATURE TEXT */
     .feature-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: calc(100% - 48px);
-      padding: 0 24px;
-      opacity: 0;
-      transition: transform 0.8s ease, opacity 0.8s ease;
-      color: #fff;
-      font-size: 16.8px;
-      line-height: 1.5;
-      text-align: center;
-      pointer-events: auto;
+      position:absolute; top:50%; left:50%;
+      transform:translate(-50%,-50%);
+      width: calc(100% - 48px); padding: 0 24px;
+      opacity:0; transition: transform 0.8s ease, opacity 0.8s ease;
+      color:#fff; font-size:16.8px; line-height:1.5; text-align:center;
+      pointer-events:auto;
     }
-
-    .feature-text.visible {
-      opacity: 1;
-      transform: translate(-50%, -50%);
-    }
-
-    .feature-text h2 {
-      font-weight: bold;
-      font-size: 1.2em;
-      margin-bottom: 0.5em;
-    }
-
-    .feature-text ul {
-      padding-left: 1em;
-      margin: 0;
-    }
-
-    .feature-text li {
-      margin-bottom: 0.5em;
-    }
-
-    .feature-text a.source {
-      display: inline-block;
-      margin-left: 0.5em;
-      font-size: 12px;
-      background-color: #4b2e2e;
-      color: #ccc;
-      padding: 0 4px;
-      border-radius: 2px;
-      text-decoration: none;
-    }
+    .feature-text.visible { opacity:1; transform:translate(-50%, -50%); }
+    .feature-text h2 { font-weight:bold; font-size:1.2em; margin-bottom:0.5em; }
+    .feature-text ul { padding-left:1em; margin:0; }
+    .feature-text li { margin-bottom:0.5em; }
+    .feature-text a.source { display:inline-block; margin-left:0.5em; font-size:12px;
+      background-color:#4b2e2e; color:#ccc; padding:0 4px; border-radius:2px; text-decoration:none; }
   </style>
 </head>
 <body>
 
-<div id="splash-screen">
-  <img src="Honda Logo.png" alt="Honda Logo">
-</div>
+<div id="splash-screen"><img src="Honda Logo.png" alt="Honda Logo"></div>
 
 <div id="layout">
-
   <!-- SIDEBAR -->
   <div id="sidebar">
     <img id="sidebar-logo" src="pioneer-logo.png" alt="Pioneer Logo">
-
     <div id="sidebar-buttons">
       <div class="side-btn" data-target="1">REAR CARGO STORAGE</div>
       <div class="side-btn" data-target="2">QuickFlip® CONVERTIBLE TRUNK SEATS</div>
@@ -234,9 +150,9 @@
       src="HondaPioneer1000-5_TrunkAnimations_v2.glb"
       camera-controls
       interaction-prompt="auto"
-      min-camera-orbit="-1047deg 69.98deg 4.25m"
-      max-camera-orbit="-1047deg 69.98deg 6.37m"
       style="cursor: grab;"
+      min-camera-orbit="-1100deg 60deg 4.25m"
+      max-camera-orbit="-950deg 80deg 6.37m"
       poster="poster.jpeg"
       shadow-intensity="1.07"
       autoplay
@@ -246,7 +162,6 @@
       field-of-view="22.98deg">
     </model-viewer>
   </div>
-
 </div>
 
 <script>
@@ -254,11 +169,14 @@ const viewer = document.querySelector("model-viewer");
 const buttons = document.querySelectorAll(".side-btn");
 const backBtn = document.getElementById("back-btn");
 
+// Disable right-click pan
+viewer.addEventListener('contextmenu', e => e.preventDefault());
+
 // SPLASH + initial animation
 window.addEventListener("load", () => {
   setTimeout(() => {
     document.getElementById("splash-screen").classList.add("hide");
-    // Play DriveIn once then Idle_Default
+
     viewer.setAttribute("animation-name", "DriveIn");
     viewer.play();
 
@@ -298,7 +216,7 @@ function showFeatureText(target) {
   }, 500);
 }
 
-// Sequential animation using polling
+// Sequential animation
 function playAnimationSequence(first, second) {
   viewer.setAttribute("animation-name", first);
   viewer.play();
@@ -336,6 +254,7 @@ backBtn.addEventListener("click", () => {
   document.querySelectorAll(".feature-text").forEach(f => f.classList.remove('visible'));
   backBtn.style.opacity = 0;
   backBtn.style.pointerEvents = "none";
+
   viewer.setAttribute("animation-name", "Idle_Default");
   viewer.play();
 });
