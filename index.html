@@ -252,6 +252,11 @@
 </div>
 
 <script>
+const viewer = document.querySelector("model-viewer");
+const buttons = document.querySelectorAll(".side-btn");
+const backBtn = document.getElementById("back-btn");
+
+// SPLASH + initial animation
 window.addEventListener("load", () => {
   setTimeout(() => {
     document.getElementById("splash-screen").classList.add("hide");
@@ -260,10 +265,7 @@ window.addEventListener("load", () => {
   }, 1000);
 });
 
-const viewer = document.querySelector("model-viewer");
-const buttons = document.querySelectorAll(".side-btn");
-const backBtn = document.getElementById("back-btn");
-
+// BUTTONS
 function hideButtonsSequentially() {
   let delay = 0;
   buttons.forEach((btn, i) => {
@@ -284,21 +286,25 @@ function showBackButton() {
 function showFeatureText(target) {
   document.querySelectorAll('.feature-text').forEach(f => f.classList.remove('visible'));
   setTimeout(() => {
-    const ftext = document.getElementById(`feature${target}`);
-    ftext.classList.add('visible');
+    document.getElementById(`feature${target}`).classList.add('visible');
   }, 500);
 }
 
+// Sequential animation using polling
 function playAnimationSequence(first, second) {
   viewer.setAttribute("animation-name", first);
   viewer.play();
-  viewer.addEventListener("finished", function handler() {
-    viewer.removeEventListener("finished", handler);
-    if (second) {
+
+  if (!second) return;
+
+  const duration = viewer.duration || 0;
+  const interval = setInterval(() => {
+    if (viewer.currentTime >= duration) {
+      clearInterval(interval);
       viewer.setAttribute("animation-name", second);
       viewer.play();
     }
-  });
+  }, 50);
 }
 
 buttons.forEach(btn => {
@@ -314,6 +320,7 @@ buttons.forEach(btn => {
   });
 });
 
+// BACK BUTTON
 backBtn.addEventListener("click", () => {
   document.querySelectorAll(".side-btn").forEach(btn => {
     btn.style.opacity = 1;
@@ -328,6 +335,5 @@ backBtn.addEventListener("click", () => {
 </script>
 
 <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
-
 </body>
 </html>
