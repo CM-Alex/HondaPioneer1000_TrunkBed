@@ -43,6 +43,18 @@
         border-radius: 18px;
         border: 1px solid rgba(255,255,255,0.3);
         position: relative;
+        overflow: hidden;
+      }
+
+      /* Mask gradient on left for fly-in */
+      #sidebar::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; bottom: 0;
+        width: 20px;
+        background: linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0));
+        pointer-events: none;
+        z-index: 2;
       }
 
       /* Logo at top */
@@ -165,6 +177,46 @@
       #hs2, #hs3 {
         transform: translateY(-32px);
       }
+
+      /* FEATURE TEXT */
+      .feature-text {
+        opacity: 0;
+        transform: translateX(-40px);
+        transition: transform 0.8s ease, opacity 0.8s ease;
+        color: #fff;
+        font-size: 14px;
+        line-height: 1.5;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        padding-right: 8px;
+      }
+
+      .feature-text.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .feature-text ul {
+        padding-left: 1em;
+        margin: 0;
+      }
+
+      .feature-text li {
+        margin-bottom: 0.5em;
+      }
+
+      .feature-text a.source {
+        display: inline-block;
+        margin-left: 0.5em;
+        font-size: 12px;
+        background-color: #4b2e2e;
+        color: #ccc;
+        padding: 0 4px;
+        border-radius: 2px;
+        text-decoration: none;
+      }
+
     </style>
   </head>
 
@@ -184,6 +236,31 @@
         <div class="side-btn" data-target="1">REAR CARGO STORAGE</div>
         <div class="side-btn" data-target="2">CONVERTIBLE TRUNK SEATS</div>
         <div class="side-btn" data-target="3">DUMP BED FUNCTION</div>
+
+        <!-- Feature text -->
+        <div id="feature1" class="feature-text">
+          <ul>
+            <li>1000-lb cargo bed capacity <a class="source" href="https://powersports.honda.com/sxs/recutility/pioneer-1000-5/pioneer-1000-5?utm_source=chatgpt.com" target="_blank">source</a></li>
+            <li>Tilt bed for easier dumping <a class="source" href="https://powersports.honda.com/sxs/recutility/pioneer-1000-5/2024/pioneer-1000-5?utm_source=chatgpt.com" target="_blank">source</a></li>
+            <li>2,500-lb towing capacity <a class="source" href="https://powersports.honda.com/sxs/recutility/pioneer-1000-5/2024/features?utm_source=chatgpt.com" target="_blank">source</a></li>
+          </ul>
+        </div>
+
+        <div id="feature2" class="feature-text">
+          <ul>
+            <li>QuickFlip® rear seats pop up for 5-passenger seating <a class="source" href="https://powersports.honda.com/sxs/recutility/pioneer-1000-5/2024/pioneer-1000-5?utm_source=chatgpt.com" target="_blank">source</a></li>
+            <li>Seats fold flat for cargo mode <a class="source" href="https://powersports.honda.com/sxs/recutility/-/media/products/family/pioneer-1000-5/brochures/2024/2024-pioneer-1000-5-brochure.pdf?utm_source=chatgpt.com" target="_blank">source</a></li>
+            <li>Switch between passenger/cargo flexibly <a class="source" href="https://powersports.honda.com/sxs/recutility/-/media/products/family/pioneer-1000-5/brochures/2024/2024-pioneer-1000-5-brochure.pdf?utm_source=chatgpt.com" target="_blank">source</a></li>
+          </ul>
+        </div>
+
+        <div id="feature3" class="feature-text">
+          <ul>
+            <li>Tilt bed dumps cargo easily <a class="source" href="https://powersports.honda.com/sxs/recutility/pioneer-1000-5/pioneer-1000-5?utm_source=chatgpt.com" target="_blank">source</a></li>
+            <li>QuickFlip seats fold flat, keeping dump bed usable <a class="source" href="https://powersports.honda.com/sxs/recutility/-/media/products/family/pioneer-1000-5/brochures/2024/2024-pioneer-1000-5-brochure.pdf?utm_source=chatgpt.com" target="_blank">source</a></li>
+            <li>Switch between 5-passenger mode and cargo/dump-bed mode <a class="source" href="https://powersports.honda.com/sxs/recutility/-/media/products/family/pioneer-1000-5/brochures/2024/2024-pioneer-1000-5-brochure.pdf?utm_source=chatgpt.com" target="_blank">source</a></li>
+          </ul>
+        </div>
 
         <div id="back-btn">Back</div>
       </div>
@@ -207,20 +284,10 @@
           camera-orbit="-1047deg 69.98deg 5.311m"
           field-of-view="22.98deg">
 
-          <!-- HOTSPOT 1 -->
-          <button class="Hotspot hidden" id="hs1" slot="hotspot-8"
-            data-animation="Storage_Trunk">
-          </button>
-
-          <!-- HOTSPOT 2 -->
-          <button class="Hotspot hidden" id="hs2" slot="hotspot-9"
-            data-animation="TrunkSeats_Up">
-          </button>
-
-          <!-- HOTSPOT 3 -->
-          <button class="Hotspot hidden" id="hs3" slot="hotspot-10"
-            data-animation="Lift_TrunkBed">
-          </button>
+          <!-- HOTSPOTS -->
+          <button class="Hotspot hidden" id="hs1" slot="hotspot-8" data-animation="Storage_Trunk"></button>
+          <button class="Hotspot hidden" id="hs2" slot="hotspot-9" data-animation="TrunkSeats_Up"></button>
+          <button class="Hotspot hidden" id="hs3" slot="hotspot-10" data-animation="Lift_TrunkBed"></button>
 
         </model-viewer>
       </div>
@@ -247,7 +314,7 @@
       function hideButtonsSequentially() {
         let delay = 0;
         buttons.forEach((btn, i) => {
-          const index = buttons.length - 1 - i; // bottom-to-top
+          const index = buttons.length - 1 - i;
           setTimeout(() => {
             btn.style.opacity = 0;
             btn.style.pointerEvents = "none";
@@ -262,17 +329,25 @@
       }
 
       function playAnimationWithHotspot(target) {
-        // Show the hotspot
         Object.values(hotspots).forEach(h => h.classList.add("hidden"));
         const hs = hotspots[target];
         hs.classList.remove("hidden");
 
-        // Set the correct animation
         const animName = hs.dataset.animation;
         viewer.animationName = animName;
         viewer.play();
 
         hideButtonsSequentially();
+
+        // hide all feature texts first
+        document.querySelectorAll('.feature-text').forEach(f => f.classList.remove('visible'));
+
+        // show corresponding feature text
+        setTimeout(() => {
+          const ftext = document.getElementById(`feature${target}`);
+          ftext.classList.add('visible');
+        }, 500);
+
         setTimeout(showBackButton, 600);
       }
 
@@ -283,12 +358,11 @@
         });
       });
 
-      // Back button
       backBtn.addEventListener("click", () => {
         location.reload();
       });
 
-      // Start with NO hotspots shown
+      // Start with no hotspots shown
       Object.values(hotspots).forEach(h => h.classList.add("hidden"));
     </script>
 
