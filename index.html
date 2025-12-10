@@ -18,7 +18,11 @@
       font-family: 'Inter', sans-serif;
     }
 
-    #layout { display: flex; width:100%; height:100%; }
+    #layout {
+      display: flex;
+      width: 100%;
+      height: 100%;
+    }
 
     /* SIDEBAR */
     #sidebar {
@@ -30,7 +34,7 @@
       flex-direction: column;
       justify-content: flex-start;
       align-items: stretch;
-      background: rgba(255,255,255,0.18);
+      background: rgba(255, 255, 255, 0.18);
       backdrop-filter: blur(12px) saturate(180%);
       -webkit-backdrop-filter: blur(12px) saturate(180%);
       border-radius: 18px;
@@ -39,62 +43,140 @@
       overflow: hidden;
     }
 
-    #sidebar-logo { display:block; margin:0 auto 24px; max-width:80%; height:auto; }
-
-    /* BUTTONS */
-    #sidebar-buttons { display:flex; flex-direction:column; gap:16px; margin-bottom:24px; }
-
-    .side-btn, #back-btn {
-      padding:14px 20px;
-      background:rgba(255,255,255,0.35);
-      border:1px solid rgba(255,255,255,0.4);
-      border-radius:12px;
-      text-align:center;
-      color:#fff;
-      font-size:18px;
-      cursor:pointer;
-      user-select:none;
-      transition:0.5s ease, opacity 0.5s ease;
+    #sidebar-logo {
+      display: block;
+      margin: 0 auto 24px;
+      max-width: 80%;
+      height: auto;
     }
 
-    .side-btn:hover, #back-btn:hover { background:rgba(255,255,255,0.55); }
-    .side-btn:active, #back-btn:active { background:rgba(255,255,255,0.7); transform:scale(0.97); }
-    #back-btn { position:absolute; bottom:24px; left:24px; right:24px; opacity:0; pointer-events:none; }
+    /* BUTTONS */
+    #sidebar-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .side-btn, #back-btn {
+      padding: 14px 20px;
+      background: rgba(255,255,255,0.35);
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 12px;
+      text-align: center;
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      user-select: none;
+      transition: 0.5s ease, opacity 0.5s ease;
+    }
+
+    .side-btn:hover, #back-btn:hover {
+      background: rgba(255,255,255,0.55);
+    }
+
+    .side-btn:active, #back-btn:active {
+      background: rgba(255,255,255,0.7);
+      transform: scale(0.97);
+    }
+
+    #back-btn {
+      position: absolute;
+      bottom: 24px;
+      left: 24px;
+      right: 24px;
+      opacity: 0;
+      pointer-events: none;
+    }
 
     /* MODEL VIEWER */
-    #viewer-container { width:80%; height:100%; }
-    model-viewer { width:100%; height:100%; background:#000; }
+    #viewer-container {
+      width: 80%;
+      height: 100%;
+    }
+
+    model-viewer {
+      width: 100%;
+      height: 100%;
+      background: #000;
+    }
 
     /* SPLASH SCREEN */
     #splash-screen {
-      position:fixed; top:0; left:0; width:100%; height:100%;
-      background:black; display:flex; justify-content:center; align-items:center;
-      opacity:1; transition:opacity 0.5s ease; z-index:9999;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+      z-index: 9999;
     }
-    #splash-screen.hide { opacity:0; pointer-events:none; }
-    #splash-screen img { width:260px; max-width:70%; }
+
+    #splash-screen.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    #splash-screen img {
+      width: 260px;
+      max-width: 70%;
+    }
 
     /* HOTSPOTS HIDDEN */
-    .Hotspot { display:none !important; }
+    .Hotspot {
+      display: none !important;
+    }
 
     /* FEATURE TEXT */
     .feature-text {
-      position:absolute;
-      top:50%; left:50%;
-      transform:translate(-50%,-50%);
-      width:calc(100% - 48px);
-      padding:0 24px;
-      opacity:0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: calc(100% - 48px);
+      padding: 0 24px;
+      opacity: 0;
       transition: transform 0.8s ease, opacity 0.8s ease;
-      color:#fff; font-size:16.8px; line-height:1.5; text-align:center; pointer-events:auto;
+      color: #fff;
+      font-size: 16.8px;
+      line-height: 1.5;
+      text-align: center;
+      pointer-events: auto;
     }
-    .feature-text.visible { opacity:1; transform:translate(-50%,-50%); }
-    .feature-text h2 { font-weight:bold; font-size:1.2em; margin-bottom:0.5em; }
-    .feature-text ul { padding-left:1em; margin:0; }
-    .feature-text li { margin-bottom:0.5em; }
+
+    .feature-text.visible {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+
+    .feature-text h2 {
+      font-weight: bold;
+      font-size: 1.2em;
+      margin-bottom: 0.5em;
+    }
+
+    .feature-text ul {
+      padding-left: 1em;
+      margin: 0;
+    }
+
+    .feature-text li {
+      margin-bottom: 0.5em;
+    }
+
     .feature-text a.source {
-      display:inline-block; margin-left:0.5em; font-size:12px; background-color:#4b2e2e;
-      color:#ccc; padding:0 4px; border-radius:2px; text-decoration:none;
+      display: inline-block;
+      margin-left: 0.5em;
+      font-size: 12px;
+      background-color: #4b2e2e;
+      color: #ccc;
+      padding: 0 4px;
+      border-radius: 2px;
+      text-decoration: none;
     }
   </style>
 </head>
@@ -105,6 +187,7 @@
 </div>
 
 <div id="layout">
+
   <!-- SIDEBAR -->
   <div id="sidebar">
     <img id="sidebar-logo" src="pioneer-logo.png" alt="Pioneer Logo">
@@ -136,9 +219,9 @@
     <div id="feature3" class="feature-text">
       <h2>DUMP BED FUNCTION</h2>
       <ul>
-        <li>Tilt bed dumps cargo easily <a class="source" href="https://powersports.honda.com/sxs/recutility/pioneer-1000-5/pioneer-1000-5" target="_blank">source</a></li>
-        <li>QuickFlip seats fold flat for dump-bed use <a class="source" href="https://powersports.honda.com/sxs/recutility/-/media/products/family/pioneer-1000-5/brochures/2024/2024-pioneer-1000-5-brochure.pdf" target="_blank">source</a></li>
-        <li>Switch between 5-passenger and cargo/dump-bed mode <a class="source" href="https://powersports.honda.com/sxs/recutility/-/media/products/family/pioneer-1000-5/brochures/2024/2024-pioneer-1000-5-brochure.pdf" target="_blank">source</a></li>
+        <li>Pull the tilt-bed lever located on the left front side of the cargo bed <a class="source" href="https://cdn.powersports.honda.com/documentum/MWOM/ml.remawmom.2021_31hl4a60_pioneer_1000.pdf" target="_blank">source</a></li>
+        <li>Bed lifts approximately 18 inches to dump cargo <a class="source" href="https://powersports.honda.com/sxs/recutility/pioneer-1000-5/features" target="_blank">source</a></li>
+        <li>Cannot dump bed if QuickFlip seats are in passenger position <a class="source" href="https://cdn.powersports.honda.com/documentum/MWOM/ml.remawmom.2021_31hl4a60_pioneer_1000.pdf" target="_blank">source</a></li>
       </ul>
     </div>
 
@@ -151,9 +234,16 @@
       src="HondaPioneer1000-5_TrunkAnimations_v2.glb"
       camera-controls
       interaction-prompt="auto"
-      min-camera-orbit="auto auto 4.25m"
-      max-camera-orbit="auto auto 6.37m"
+      min-camera-orbit="-1047deg 69.98deg 4.25m"
+      max-camera-orbit="-1047deg 69.98deg 6.37m"
+      min-field-of-view="22deg"
+      max-field-of-view="24.5deg"
+      auto-rotate
+      auto-rotate-delay="1000"
+      auto-rotate-speed="10"
       disable-pan
+      tone-mapping="neutral"
+      poster="poster.jpeg"
       shadow-intensity="1.07"
       autoplay
       exposure="0.47"
@@ -162,6 +252,7 @@
       field-of-view="22.98deg">
     </model-viewer>
   </div>
+
 </div>
 
 <script>
@@ -175,6 +266,15 @@ window.addEventListener("load", () => {
     document.getElementById("splash-screen").classList.add("hide");
     viewer.setAttribute("animation-name", "DriveIn");
     viewer.play();
+
+    // Wait for DriveIn to finish, then play Idle_Default
+    const checkDriveIn = setInterval(() => {
+      if (viewer.currentTime >= viewer.duration) {
+        clearInterval(checkDriveIn);
+        viewer.setAttribute("animation-name", "Idle_Default");
+        viewer.play();
+      }
+    }, 50);
   }, 1000);
 });
 
@@ -211,7 +311,7 @@ function playAnimationSequence(first, second) {
   if (!second) return;
 
   const interval = setInterval(() => {
-    if (viewer.currentTime >= (viewer.duration || 0)) {
+    if (viewer.currentTime >= viewer.duration) {
       clearInterval(interval);
       viewer.setAttribute("animation-name", second);
       viewer.play();
@@ -241,7 +341,10 @@ backBtn.addEventListener("click", () => {
   document.querySelectorAll(".feature-text").forEach(f => f.classList.remove('visible'));
   backBtn.style.opacity = 0;
   backBtn.style.pointerEvents = "none";
+
+  // Play Idle_Default from beginning
   viewer.setAttribute("animation-name", "Idle_Default");
+  viewer.currentTime = 0;
   viewer.play();
 });
 </script>
