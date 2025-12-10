@@ -172,6 +172,12 @@ const backBtn = document.getElementById("back-btn");
 // Disable right-click pan
 viewer.addEventListener('contextmenu', e => e.preventDefault());
 
+// Center model helper
+function resetCamera() {
+  viewer.cameraOrbit = '-1047deg 69.98deg 5.31m';
+  viewer.jumpCameraToGoal();
+}
+
 // SPLASH + initial animation
 window.addEventListener("load", () => {
   setTimeout(() => {
@@ -218,6 +224,7 @@ function showFeatureText(target) {
 
 // Sequential animation
 function playAnimationSequence(first, second) {
+  resetCamera();
   viewer.setAttribute("animation-name", first);
   viewer.play();
 
@@ -255,6 +262,7 @@ backBtn.addEventListener("click", () => {
   backBtn.style.opacity = 0;
   backBtn.style.pointerEvents = "none";
 
+  resetCamera();
   viewer.setAttribute("animation-name", "Idle_Default");
   viewer.play();
 });
