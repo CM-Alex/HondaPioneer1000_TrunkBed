@@ -5,7 +5,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
@@ -35,7 +34,6 @@
       flex-direction: column;
       justify-content: flex-start;
       align-items: stretch;
-      gap: 18px;
       background: rgba(255, 255, 255, 0.18);
       backdrop-filter: blur(12px) saturate(180%);
       -webkit-backdrop-filter: blur(12px) saturate(180%);
@@ -43,16 +41,6 @@
       border: 1px solid rgba(255,255,255,0.3);
       position: relative;
       overflow: hidden;
-    }
-
-    #sidebar::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; bottom: 0;
-      width: 20px;
-      background: linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0));
-      pointer-events: none;
-      z-index: 2;
     }
 
     #sidebar-logo {
@@ -173,6 +161,18 @@
     }
 
     /* FEATURE TEXT */
+    .feature-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      pointer-events: none;
+    }
+
     .feature-text {
       opacity: 0;
       transform: translateX(-40px);
@@ -180,11 +180,8 @@
       color: #fff;
       font-size: 16.8px;
       line-height: 1.5;
-      position: relative;
-      z-index: 1;
-      overflow: hidden;
-      padding: 0 8px;
       text-align: center;
+      pointer-events: auto;
     }
 
     .feature-text.visible {
@@ -221,22 +218,21 @@
 </head>
 <body>
 
-  <!-- SPLASH -->
-  <div id="splash-screen">
-    <img src="Honda Logo.png" alt="Honda Logo">
-  </div>
+<div id="splash-screen">
+  <img src="Honda Logo.png" alt="Honda Logo">
+</div>
 
-  <div id="layout">
+<div id="layout">
 
-    <!-- SIDEBAR -->
-    <div id="sidebar">
-      <img id="sidebar-logo" src="pioneer-logo.png" alt="Pioneer Logo">
+  <!-- SIDEBAR -->
+  <div id="sidebar">
+    <img id="sidebar-logo" src="pioneer-logo.png" alt="Pioneer Logo">
 
-      <div class="side-btn" data-target="1">REAR CARGO STORAGE</div>
-      <div class="side-btn" data-target="2">CONVERTIBLE TRUNK SEATS</div>
-      <div class="side-btn" data-target="3">DUMP BED FUNCTION</div>
+    <div class="side-btn" data-target="1">REAR CARGO STORAGE</div>
+    <div class="side-btn" data-target="2">CONVERTIBLE TRUNK SEATS</div>
+    <div class="side-btn" data-target="3">DUMP BED FUNCTION</div>
 
-      <!-- Feature text -->
+    <div class="feature-container">
       <div id="feature1" class="feature-text">
         <h2>REAR CARGO STORAGE</h2>
         <ul>
@@ -263,106 +259,109 @@
           <li>Switch between 5-passenger mode and cargo/dump-bed mode <a class="source" href="https://powersports.honda.com/sxs/recutility/-/media/products/family/pioneer-1000-5/brochures/2024/2024-pioneer-1000-5-brochure.pdf?utm_source=chatgpt.com" target="_blank">source</a></li>
         </ul>
       </div>
-
-      <div id="back-btn">Back</div>
     </div>
 
-    <!-- MODEL VIEWER AREA -->
-    <div id="viewer-container">
-      <model-viewer
-        src="HondaPioneer1000-5_TrunkAnimations_v2.glb"
-        ar
-        ar-modes="webxr scene-viewer quick-look"
-        camera-controls
-        interaction-prompt="none"
-        reveal="interaction"
-        tone-mapping="neutral"
-        poster="poster.jpeg"
-        shadow-intensity="1.07"
-        autoplay
-        exposure="0.47"
-        shadow-softness="1"
-        animation-name="Idle_Default"
-        camera-orbit="-1047deg 69.98deg 5.311m"
-        field-of-view="22.98deg">
-
-        <!-- HOTSPOTS -->
-        <button class="Hotspot hidden" id="hs1" slot="hotspot-8" data-animation="Storage_Trunk"></button>
-        <button class="Hotspot hidden" id="hs2" slot="hotspot-9" data-animation="TrunkSeats_Up"></button>
-        <button class="Hotspot hidden" id="hs3" slot="hotspot-10" data-animation="Lift_TrunkBed"></button>
-
-      </model-viewer>
-    </div>
+    <div id="back-btn">Back</div>
   </div>
 
-  <script>
-    window.addEventListener("load", () => {
-      setTimeout(() => {
-        document.getElementById("splash-screen").classList.add("hide");
-      }, 1500);
-    });
+  <!-- MODEL VIEWER AREA -->
+  <div id="viewer-container">
+    <model-viewer
+      src="HondaPioneer1000-5_TrunkAnimations_v2.glb"
+      ar
+      ar-modes="webxr scene-viewer quick-look"
+      camera-controls
+      interaction-prompt="auto"
+      camera-orbit="-1047deg 69.98deg 5.311m"
+      min-camera-orbit="-1047deg 69.98deg 4.25m"
+      max-camera-orbit="-1047deg 69.98deg 6.37m"
+      min-field-of-view="22deg"
+      max-field-of-view="24.5deg"
+      tone-mapping="neutral"
+      poster="poster.jpeg"
+      shadow-intensity="1.07"
+      autoplay
+      exposure="0.47"
+      shadow-softness="1"
+      animation-name="Idle_Default"
+      field-of-view="22.98deg">
 
-    const viewer = document.querySelector("model-viewer");
-    const hotspots = {
-      1: document.getElementById("hs1"),
-      2: document.getElementById("hs2"),
-      3: document.getElementById("hs3"),
-    };
+      <button class="Hotspot hidden" id="hs1" slot="hotspot-8" data-animation="Storage_Trunk"></button>
+      <button class="Hotspot hidden" id="hs2" slot="hotspot-9" data-animation="TrunkSeats_Up"></button>
+      <button class="Hotspot hidden" id="hs3" slot="hotspot-10" data-animation="Lift_TrunkBed"></button>
+    </model-viewer>
+  </div>
 
-    const buttons = document.querySelectorAll(".side-btn");
-    const backBtn = document.getElementById("back-btn");
+</div>
 
-    function hideButtonsSequentially() {
-      let delay = 0;
-      buttons.forEach((btn, i) => {
-        const index = buttons.length - 1 - i;
-        setTimeout(() => {
-          btn.style.opacity = 0;
-          btn.style.pointerEvents = "none";
-        }, delay);
-        delay += 200;
-      });
-    }
+<script>
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    document.getElementById("splash-screen").classList.add("hide");
+  }, 1500);
+});
 
-    function showBackButton() {
-      backBtn.style.opacity = 1;
-      backBtn.style.pointerEvents = "auto";
-    }
+const viewer = document.querySelector("model-viewer");
+const hotspots = {
+  1: document.getElementById("hs1"),
+  2: document.getElementById("hs2"),
+  3: document.getElementById("hs3"),
+};
 
-    function playAnimationWithHotspot(target) {
-      Object.values(hotspots).forEach(h => h.classList.add("hidden"));
-      const hs = hotspots[target];
-      hs.classList.remove("hidden");
+const buttons = document.querySelectorAll(".side-btn");
+const backBtn = document.getElementById("back-btn");
 
-      const animName = hs.dataset.animation;
-      viewer.setAttribute("animation-name", animName);
-      viewer.play();
+function hideButtonsSequentially() {
+  let delay = 0;
+  buttons.forEach((btn, i) => {
+    const index = buttons.length - 1 - i;
+    setTimeout(() => {
+      btn.style.opacity = 0;
+      btn.style.pointerEvents = "none";
+    }, delay);
+    delay += 200;
+  });
+}
 
-      hideButtonsSequentially();
+function showBackButton() {
+  backBtn.style.opacity = 1;
+  backBtn.style.pointerEvents = "auto";
+}
 
-      document.querySelectorAll('.feature-text').forEach(f => f.classList.remove('visible'));
+function playAnimationWithHotspot(target) {
+  Object.values(hotspots).forEach(h => h.classList.add("hidden"));
+  const hs = hotspots[target];
+  hs.classList.remove("hidden");
 
-      setTimeout(() => {
-        const ftext = document.getElementById(`feature${target}`);
-        ftext.classList.add('visible');
-      }, 500);
+  const animName = hs.dataset.animation;
+  viewer.setAttribute("animation-name", animName);
+  viewer.play();
 
-      setTimeout(showBackButton, 600);
-    }
+  hideButtonsSequentially();
 
-    buttons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        playAnimationWithHotspot(btn.dataset.target);
-      });
-    });
+  document.querySelectorAll('.feature-text').forEach(f => f.classList.remove('visible'));
+  setTimeout(() => {
+    const ftext = document.getElementById(`feature${target}`);
+    ftext.classList.add('visible');
+  }, 500);
 
-    backBtn.addEventListener("click", () => {
-      location.reload();
-    });
+  setTimeout(showBackButton, 600);
+}
 
-    Object.values(hotspots).forEach(h => h.classList.add("hidden"));
-  </script>
+buttons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    playAnimationWithHotspot(btn.dataset.target);
+  });
+});
 
-  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+backBtn.addEventListener("click", () => {
+  location.reload();
+});
+
+Object.values(hotspots).forEach(h => h.classList.add("hidden"));
+</script>
+
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+
 </body>
 </html>
