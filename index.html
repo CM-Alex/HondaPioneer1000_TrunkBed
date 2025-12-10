@@ -50,6 +50,14 @@
       height: auto;
     }
 
+    /* BUTTONS */
+    #sidebar-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 16px; /* equal spacing */
+      margin-bottom: 24px;
+    }
+
     .side-btn, #back-btn {
       padding: 14px 20px;
       background: rgba(255,255,255,0.35);
@@ -161,24 +169,17 @@
     }
 
     /* FEATURE TEXT */
-    .feature-container {
+    .feature-text {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      pointer-events: none;
-    }
-
-    .feature-text {
+      width: calc(100% - 48px); /* equal horizontal padding */
+      padding: 0 24px;
       opacity: 0;
-      transform: translateX(-40px);
       transition: transform 0.8s ease, opacity 0.8s ease;
       color: #fff;
-      font-size: 16.8px; /* 20% bigger */
+      font-size: 16.8px;
       line-height: 1.5;
       text-align: center;
       pointer-events: auto;
@@ -186,7 +187,7 @@
 
     .feature-text.visible {
       opacity: 1;
-      transform: translateX(0);
+      transform: translate(-50%, -50%);
     }
 
     .feature-text h2 {
@@ -228,37 +229,37 @@
   <div id="sidebar">
     <img id="sidebar-logo" src="pioneer-logo.png" alt="Pioneer Logo">
 
-    <div class="side-btn" data-target="1">REAR CARGO STORAGE</div>
-    <div class="side-btn" data-target="2">CONVERTIBLE TRUNK SEATS</div>
-    <div class="side-btn" data-target="3">DUMP BED FUNCTION</div>
+    <div id="sidebar-buttons">
+      <div class="side-btn" data-target="1">REAR CARGO STORAGE</div>
+      <div class="side-btn" data-target="2">CONVERTIBLE TRUNK SEATS</div>
+      <div class="side-btn" data-target="3">DUMP BED FUNCTION</div>
+    </div>
 
-    <div class="feature-container">
-      <div id="feature1" class="feature-text">
-        <h2>REAR CARGO STORAGE</h2>
-        <ul>
-          <li>1000-lb cargo bed capacity <a class="source" href="https://powersports.honda.com/sxs/recutility/pioneer-1000-5/pioneer-1000-5" target="_blank">source</a></li>
-          <li>Tilt bed for easier dumping <a class="source" href="https://powersports.honda.com/sxs/recutility/pioneer-1000-5/2024/pioneer-1000-5" target="_blank">source</a></li>
-          <li>2,500-lb towing capacity <a class="source" href="https://powersports.honda.com/sxs/recutility/pioneer-1000-5/2024/features" target="_blank">source</a></li>
-        </ul>
-      </div>
+    <div id="feature1" class="feature-text">
+      <h2>REAR CARGO STORAGE</h2>
+      <ul>
+        <li>1000-lb cargo bed capacity <a class="source" href="https://powersports.honda.com/sxs/recutility/pioneer-1000-5/pioneer-1000-5" target="_blank">source</a></li>
+        <li>Tilt bed for easier dumping <a class="source" href="https://powersports.honda.com/sxs/recutility/pioneer-1000-5/2024/pioneer-1000-5" target="_blank">source</a></li>
+        <li>2,500-lb towing capacity <a class="source" href="https://powersports.honda.com/sxs/recutility/pioneer-1000-5/2024/features" target="_blank">source</a></li>
+      </ul>
+    </div>
 
-      <div id="feature2" class="feature-text">
-        <h2>CONVERTIBLE TRUNK SEATS</h2>
-        <ul>
-          <li>QuickFlip® rear seats for 5-passenger mode <a class="source" href="https://powersports.honda.com/sxs/recutility/pioneer-1000-5/2024/pioneer-1000-5" target="_blank">source</a></li>
-          <li>Seats fold flat for cargo mode <a class="source" href="https://powersports.honda.com/sxs/recutility/-/media/products/family/pioneer-1000-5/brochures/2024/2024-pioneer-1000-5-brochure.pdf" target="_blank">source</a></li>
-          <li>Switch between passenger/cargo flexibly <a class="source" href="https://powersports.honda.com/sxs/recutility/-/media/products/family/pioneer-1000-5/brochures/2024/2024-pioneer-1000-5-brochure.pdf" target="_blank">source</a></li>
-        </ul>
-      </div>
+    <div id="feature2" class="feature-text">
+      <h2>CONVERTIBLE TRUNK SEATS</h2>
+      <ul>
+        <li>QuickFlip® rear seats for 5-passenger mode <a class="source" href="https://powersports.honda.com/sxs/recutility/pioneer-1000-5/2024/pioneer-1000-5" target="_blank">source</a></li>
+        <li>Seats fold flat for cargo mode <a class="source" href="https://powersports.honda.com/sxs/recutility/-/media/products/family/pioneer-1000-5/brochures/2024/2024-pioneer-1000-5-brochure.pdf" target="_blank">source</a></li>
+        <li>Switch between passenger/cargo flexibly <a class="source" href="https://powersports.honda.com/sxs/recutility/-/media/products/family/pioneer-1000-5/brochures/2024/2024-pioneer-1000-5-brochure.pdf" target="_blank">source</a></li>
+      </ul>
+    </div>
 
-      <div id="feature3" class="feature-text">
-        <h2>DUMP BED FUNCTION</h2>
-        <ul>
-          <li>Tilt bed dumps cargo easily <a class="source" href="https://powersports.honda.com/sxs/recutility/pioneer-1000-5/pioneer-1000-5" target="_blank">source</a></li>
-          <li>QuickFlip seats fold flat for dump-bed use <a class="source" href="https://powersports.honda.com/sxs/recutility/-/media/products/family/pioneer-1000-5/brochures/2024/2024-pioneer-1000-5-brochure.pdf" target="_blank">source</a></li>
-          <li>Switch between 5-passenger and cargo/dump-bed mode <a class="source" href="https://powersports.honda.com/sxs/recutility/-/media/products/family/pioneer-1000-5/brochures/2024/2024-pioneer-1000-5-brochure.pdf" target="_blank">source</a></li>
-        </ul>
-      </div>
+    <div id="feature3" class="feature-text">
+      <h2>DUMP BED FUNCTION</h2>
+      <ul>
+        <li>Tilt bed dumps cargo easily <a class="source" href="https://powersports.honda.com/sxs/recutility/pioneer-1000-5/pioneer-1000-5" target="_blank">source</a></li>
+        <li>QuickFlip seats fold flat for dump-bed use <a class="source" href="https://powersports.honda.com/sxs/recutility/-/media/products/family/pioneer-1000-5/brochures/2024/2024-pioneer-1000-5-brochure.pdf" target="_blank">source</a></li>
+        <li>Switch between 5-passenger and cargo/dump-bed mode <a class="source" href="https://powersports.honda.com/sxs/recutility/-/media/products/family/pioneer-1000-5/brochures/2024/2024-pioneer-1000-5-brochure.pdf" target="_blank">source</a></li>
+      </ul>
     </div>
 
     <div id="back-btn">Back</div>
@@ -336,7 +337,6 @@ function playAnimationWithHotspot(target) {
 
   const animName = hs.dataset.animation;
 
-  // Stop any current animation
   viewer.pause();
   viewer.setAttribute("animation-name", animName);
   viewer.play();
